@@ -7,20 +7,11 @@ services:
       dockerfile: Dockerfile
       args:
         NODE_VERSION: ${NODE_VERSION}
-    tty: true
-    working_dir: /var/www
+        NUXT_PORT: "${NUXT_PORT}"
+        NUXT_HOST: "${HOST}"
     volumes:
       - ${APPLICATION_PATH}:/var/www
-      - node_modules:/var/www/node_modules
     ports:
       - "${NUXT_PORT}:${NUXT_PORT}"
-      - "9005:9005"
-    environment:
-      PORT: ${NUXT_PORT}
-      HOST: ${HOST}
-    command: yarn dev
-    restart: always
     tty: true
-
-volumes:
-  node_modules:
+    restart: always
